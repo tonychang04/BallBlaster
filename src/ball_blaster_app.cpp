@@ -5,10 +5,15 @@ namespace ballblaster {
 }
 
 void BallBlasterApp::draw() {
-
+  ci::Color background_color("black");
+  ci::gl::clear(background_color);
 }
 
+void BallBlasterApp::update() {
+}
 void BallBlasterApp::keyDown(cinder::app::KeyEvent event) {
+}
+void BallBlasterApp::mouseMove(cinder::app::MouseEvent event) {
 }
 
 }

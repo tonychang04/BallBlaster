@@ -7,7 +7,7 @@
 
 namespace ballblaster {
 
-class BallBlasterApp::public ci::app::App{
+class BallBlasterApp:public ci::app::App{
  public:
   BallBlasterApp();
 
