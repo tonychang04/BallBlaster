@@ -1,9 +1,10 @@
 
+
 #include <board_player.h>
 
 #include <glm/vec2.hpp>
 namespace ballblaster {
- BoardPlayer::BoardPlayer(const glm::vec2 center) {
+ BoardPlayer::BoardPlayer(const glm::vec2& center) {
     center_ = center;
  }
 

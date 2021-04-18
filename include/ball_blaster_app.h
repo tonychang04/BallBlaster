@@ -1,11 +1,9 @@
 #pragma once
 
+#include "ball_blaster_ui.h"
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
-
-#include "ball_blaster_ui.h"
-#include "ball_blaster_app.h"
 
 namespace ballblaster {
 

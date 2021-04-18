@@ -1,9 +1,10 @@
 #include <ball_blaster_app.h>
-#include <glm/vec2.hpp>
+
 
 namespace ballblaster {
-  BallBlasterApp::BallBlasterApp(): ball_blaster_ui_(glm::vec2(100,100), glm::vec2(750,550), BoardPlayer(glm::vec2(300,300))) {
-    ci::app::setWindowSize(kWindowSize, kWindowSize);
+BallBlasterApp::BallBlasterApp()
+    : ball_blaster_ui_(glm::vec2(100, 100), glm::vec2(750, 550)) {
+  ci::app::setWindowSize(kWindowSize, kWindowSize);
 }
 
 void BallBlasterApp::draw() {
@@ -19,4 +20,4 @@ void BallBlasterApp::keyDown(cinder::app::KeyEvent event) {
 void BallBlasterApp::mouseMove(cinder::app::MouseEvent event) {
 }
 
-}
+}  // namespace ballblaster
