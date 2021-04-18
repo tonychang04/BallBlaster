@@ -1,5 +1,9 @@
 #pragma once
-#import "ball_blaster_app.h"
+#include <glm/vec2.hpp>
+
+//#import "ball_blaster_app.h"
+//#import "ball_blaster_ui.h"
+
 namespace ballblaster {
 
 class BallBlasterUI {
@@ -10,6 +14,10 @@ class BallBlasterUI {
   * Displays the container walls and the current positions of the particles.
   */
   void Display() const;
-}
+
+ private:
+  glm::vec2 start_pixel_;
+  glm::vec2 end_pixel_;
+};
 }
 
