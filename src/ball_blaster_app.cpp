@@ -2,7 +2,7 @@
 #include <glm/vec2.hpp>
 
 namespace ballblaster {
-  BallBlasterApp::BallBlasterApp(): ball_blaster_ui_(glm::vec2(100,100), glm::vec2(750,550)) {
+  BallBlasterApp::BallBlasterApp(): ball_blaster_ui_(glm::vec2(100,100), glm::vec2(750,550), BoardPlayer(glm::vec2(300,300))) {
     ci::app::setWindowSize(kWindowSize, kWindowSize);
 }
 
