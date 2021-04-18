@@ -51,7 +51,8 @@ get_filename_component(APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/" ABSOLUTE)
 
 include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
-list(APPEND SOURCE_FILES    src/ball_blaster_app.cpp)
+list(APPEND SOURCE_FILES    src/ball_blaster_app.cpp
+        src/ball_blaster_ui.cpp)
 
 list(APPEND TEST_FILES tests/)
 
