@@ -9,8 +9,8 @@ namespace ballblaster {
  }
 
   void BoardPlayer::draw() const {
-    ci::gl::color(ci::Color("white"));
-    ci::gl::drawStrokedRect(ci::Rectf(glm::vec2(center_.y - kWidth, center_.x - kLength),
+    ci::gl::color(ci::Color(kColor));
+    ci::gl::drawSolidRect(ci::Rectf(glm::vec2(center_.y - kWidth, center_.x - kLength),
                                       glm::vec2(center_.y + kWidth, center_.x + kLength)));
   }
 

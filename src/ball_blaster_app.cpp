@@ -24,7 +24,6 @@ void BallBlasterApp::keyDown(cinder::app::KeyEvent event) {
       break;
     case ci::app::KeyEvent::KEY_LEFT:
       ball_blaster_engine_.MovePlayer(-kMovePixel);
-      std::cout << "l";
       break;
   }
 }

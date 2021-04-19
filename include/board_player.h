@@ -12,12 +12,13 @@ namespace ballblaster {
     void move(int distance);
 
    private:
+    const cinder::ColorT<float> kColor  = "gray";
     glm::vec2 center_;
 
     // the length and width below represents the length and width from the
     // center to the side
     const size_t kLength = 5;
-    const size_t kWidth = 30;
+    const size_t kWidth = 50;
   };
 
 
