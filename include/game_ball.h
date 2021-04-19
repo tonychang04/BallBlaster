@@ -18,10 +18,12 @@ class GameBall {
 
   void SetVelocity(const glm::vec2& velocity);
 
+  void ProcessCollideWall(const glm::vec2& start_pixel, const glm::vec2& end_pixel, size_t length);
+
  private:
   glm::vec2 position_;
   glm::vec2 velocity_;
-  const cinder::ColorT<float> kColor = "white";
+  const cinder::ColorT<float> kColor = "blae";
   const size_t kRadius = 20;
 };
 }

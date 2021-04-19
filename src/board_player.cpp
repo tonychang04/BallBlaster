@@ -17,4 +17,11 @@ namespace ballblaster {
   void BoardPlayer::move(int distance) {
     center_.y = center_.y + distance;
   }
+
+  size_t BoardPlayer::GetLength() {
+    return kLength;
+  }
+  size_t BoardPlayer::GetWidth() {
+    return kWidth;
+  }
 }

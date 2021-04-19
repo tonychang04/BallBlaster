@@ -9,9 +9,7 @@ GameBall::GameBall(const glm::vec2& position,const glm::vec2& velocity) {
   velocity_ = velocity;
 }
 void GameBall::Draw() const {
-  std::cout << position_.x;
-  std::cout << kRadius;
-  ci::gl::color(ci::Color("blue"));
+  ci::gl::color(kColor);
   ci::gl::drawSolidCircle(position_, kRadius);
 
   //ci::gl::drawSolidCircle(glm::vec2(300,300), 30);
@@ -33,6 +31,35 @@ const glm::vec2& GameBall::GetVelocity() const {
 
 void GameBall::SetVelocity(const glm::vec2& velocity) {
   velocity_ = velocity;
+}
+
+void GameBall::ProcessCollideWall(const glm::vec2& start_pixel, const glm::vec2& end_pixel, size_t length) {
+  // if particle hits right wall and particle is moving towards right
+  if ((position_.x >= end_pixel.y - kRadius &&
+       (position_.x - (end_pixel.y)) *
+       velocity_.x <
+       0) ||
+      // if particle hits left wall and particle is moving towards left
+      (position_.x <= start_pixel.y + kRadius &&
+       (position_.x - start_pixel.y) *
+       velocity_.x <
+       0)) {
+    // negate the x velocity once it hits horizontal
+    velocity_.x = -velocity_.x;
+    // if the particle hits the top wall and particle is moving up
+  }
+  if ((position_.y >= end_pixel.x - kRadius &&
+       (position_.y - (end_pixel.x)) *
+       velocity_.y <
+       0) ||
+      // if the particle hits the bottom wall and particle is moving down
+      (position_.y <= start_pixel.x + kRadius &&
+       (position_.y - (start_pixel.x)) *
+       velocity_.y <
+       0)) {
+    // negate the x velocity once it hits vertical
+    velocity_.y = -velocity_.y;
+  }
 }
 
 }

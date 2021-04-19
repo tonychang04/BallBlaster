@@ -11,6 +11,10 @@ namespace ballblaster {
 
     void move(int distance);
 
+    size_t GetLength();
+
+    size_t GetWidth();
+
    private:
     const cinder::ColorT<float> kColor  = "gray";
     glm::vec2 center_;
