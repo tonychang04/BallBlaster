@@ -14,6 +14,7 @@ void BallBlasterApp::draw() {
 }
 
 void BallBlasterApp::update() {
+  ball_blaster_engine_.AdvanceOneFrame();
 }
 
 void BallBlasterApp::keyDown(cinder::app::KeyEvent event) {

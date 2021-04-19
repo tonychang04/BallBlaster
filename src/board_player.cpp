@@ -8,8 +8,8 @@ namespace ballblaster {
     center_ = center;
  }
 
-  void BoardPlayer::draw() const {
-    ci::gl::color(ci::Color(kColor));
+  void BoardPlayer::Draw() const {
+    ci::gl::color(kColor);
     ci::gl::drawSolidRect(ci::Rectf(glm::vec2(center_.y - kWidth, center_.x - kLength),
                                       glm::vec2(center_.y + kWidth, center_.x + kLength)));
   }

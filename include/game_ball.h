@@ -6,24 +6,23 @@
 namespace ballblaster {
 class GameBall {
  public:
-  GameBall();
+  GameBall(const glm::vec2& position,const glm::vec2& velocity);
 
-  glm::vec2 GetPosition() const;
+  void Draw() const;
+
+  const glm::vec2& GetPosition() const;
 
   void SetPosition(const glm::vec2& position);
 
-  glm::vec2 GetVelocity() const;
+  const glm::vec2& GetVelocity() const;
 
   void SetVelocity(const glm::vec2& velocity);
-
-  size_t GetRadius() const;
-
 
  private:
   glm::vec2 position_;
   glm::vec2 velocity_;
-  const cinder::ColorT<float> color_ = "white";
-  const size_t radius_ = 10;
+  const cinder::ColorT<float> kColor = "white";
+  const size_t kRadius = 20;
 };
 }
 

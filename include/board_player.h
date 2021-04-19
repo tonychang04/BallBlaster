@@ -7,7 +7,7 @@ namespace ballblaster {
    public:
     BoardPlayer(const glm::vec2& center);
 
-    void draw() const;
+    void Draw() const;
 
     void move(int distance);
 

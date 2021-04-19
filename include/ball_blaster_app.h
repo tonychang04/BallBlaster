@@ -34,7 +34,8 @@ class BallBlasterApp:public ci::app::App{
   void mouseMove(cinder::app::MouseEvent event) override;
 
 private:
-  BallBlasterUI ball_blaster_engine_;
+
+  BallBlasterEngine ball_blaster_engine_;
 
   const size_t kMovePixel = 8;
   const size_t kWindowSize = 775;

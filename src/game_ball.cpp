@@ -4,7 +4,19 @@
 #include <glm/vec2.hpp>
 
 namespace ballblaster {
-glm::vec2 GameBall::GetPosition() const {
+GameBall::GameBall(const glm::vec2& position,const glm::vec2& velocity) {
+  position_ = position;
+  velocity_ = velocity;
+}
+void GameBall::Draw() const {
+  std::cout << position_.x;
+  std::cout << kRadius;
+  ci::gl::color(ci::Color("blue"));
+  ci::gl::drawSolidCircle(position_, kRadius);
+
+  //ci::gl::drawSolidCircle(glm::vec2(300,300), 30);
+}
+const glm::vec2& GameBall::GetPosition() const {
   return position_;
 }
 
@@ -15,7 +27,7 @@ void GameBall::SetPosition(const glm::vec2& position) {
   position_ = position;
 }
 
-glm::vec2 GameBall::GetVelocity() const {
+const glm::vec2& GameBall::GetVelocity() const {
   return velocity_;
 }
 
@@ -23,7 +35,4 @@ void GameBall::SetVelocity(const glm::vec2& velocity) {
   velocity_ = velocity;
 }
 
-size_t GameBall::GetRadius() const {
-  return radius_;
-}
 }
