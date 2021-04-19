@@ -18,10 +18,14 @@ namespace ballblaster {
     center_.y = center_.y + distance;
   }
 
-  size_t BoardPlayer::GetLength() {
+  size_t BoardPlayer::GetLength() const {
     return kLength;
   }
-  size_t BoardPlayer::GetWidth() {
+  size_t BoardPlayer::GetWidth() const {
     return kWidth;
+  }
+
+  const glm::vec2& BoardPlayer::GetCenter() const {
+    return center_;
   }
 }

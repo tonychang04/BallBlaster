@@ -1,7 +1,9 @@
 #pragma once
 
-#include "cinder/gl/gl.h"
 #include <glm/vec2.hpp>
+
+#include "board_player.h"
+#include "cinder/gl/gl.h"
 
 namespace ballblaster {
 class GameBall {
@@ -20,10 +22,11 @@ class GameBall {
 
   void ProcessCollideWall(const glm::vec2& start_pixel, const glm::vec2& end_pixel, size_t length);
 
+  void ProcessCollidePlayer(const BoardPlayer& player);
  private:
   glm::vec2 position_;
   glm::vec2 velocity_;
-  const cinder::ColorT<float> kColor = "blae";
+  const cinder::ColorT<float> kColor = "blue";
   const size_t kRadius = 20;
 };
 }

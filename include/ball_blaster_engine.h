@@ -9,7 +9,7 @@ namespace ballblaster {
 
 class BallBlasterEngine {
  public:
-  BallBlasterEngine(const glm::vec2& start_pixel, const glm::vec2& end_pixel);
+  BallBlasterEngine(const glm::vec2& start_pixel, const glm::vec2& end_pixel, int ball_speed);
 
   /**
    * Displays the container walls and the current positions of the particles.

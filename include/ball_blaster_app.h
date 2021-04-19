@@ -36,9 +36,6 @@ class BallBlasterApp:public ci::app::App{
 private:
 
   BallBlasterEngine ball_blaster_engine_;
-  const glm::vec2 kStartPixel = glm::vec2(100,100);
-  const glm::vec2 kEndPixel = glm::vec2(750,550);
-
   const size_t kMovePixel = 8;
   const size_t kWindowSize = 775;
   //size_t frames_per_update_ = 1;
