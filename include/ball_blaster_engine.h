@@ -14,6 +14,8 @@ class BallBlasterUI {
    */
   void Display() const;
 
+  void MovePlayer(int distance);
+
  private:
   BoardPlayer player_board_;
   glm::vec2 start_pixel_;

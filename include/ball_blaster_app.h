@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ball_blaster_ui.h"
+#include "ball_blaster_engine.h"
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
@@ -34,7 +34,9 @@ class BallBlasterApp:public ci::app::App{
   void mouseMove(cinder::app::MouseEvent event) override;
 
 private:
-  BallBlasterUI ball_blaster_ui_;
+  BallBlasterUI ball_blaster_engine_;
+
+  const size_t kMovePixel = 8;
   const size_t kWindowSize = 775;
   //size_t frames_per_update_ = 1;
 };

@@ -13,4 +13,8 @@ namespace ballblaster {
     ci::gl::drawStrokedRect(ci::Rectf(glm::vec2(center_.y - kWidth, center_.x - kLength),
                                       glm::vec2(center_.y + kWidth, center_.x + kLength)));
   }
+
+  void BoardPlayer::move(int distance) {
+    center_.y = center_.y + distance;
+  }
 }

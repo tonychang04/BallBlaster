@@ -9,6 +9,8 @@ namespace ballblaster {
 
     void draw() const;
 
+    void move(int distance);
+
    private:
     glm::vec2 center_;
 
