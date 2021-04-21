@@ -24,11 +24,15 @@ void BallBlasterEngine::Display() const {
 }
 
 void BallBlasterEngine::AdvanceOneFrame() {
-  game_ball_.ProcessCollidePlayer(player_board_);
-  game_ball_.ProcessCollideWall(start_pixel_, end_pixel_, kBorderLength);
-  game_ball_.SetPosition(
-      glm::vec2(game_ball_.GetPosition().x + game_ball_.GetVelocity().x,
-                game_ball_.GetPosition().y + game_ball_.GetVelocity().y));
+  if (game_ball_.IsSurviving()) {
+    game_ball_.ProcessCollidePlayer(player_board_);
+    game_ball_.ProcessCollideWall(start_pixel_, end_pixel_, kBorderLength);
+    game_ball_.SetPosition(
+        glm::vec2(game_ball_.GetPosition().x + game_ball_.GetVelocity().x,
+                  game_ball_.GetPosition().y + game_ball_.GetVelocity().y));
+  } else {
+
+  }
 }
 void BallBlasterEngine::MovePlayer(int distance) {
   player_board_.move(distance);

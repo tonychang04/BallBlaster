@@ -22,8 +22,14 @@ class GameBall {
 
   void ProcessCollideWall(const glm::vec2& start_pixel, const glm::vec2& end_pixel, size_t length);
 
+
+
   void ProcessCollidePlayer(const BoardPlayer& player);
+
+  bool IsSurviving();
+
  private:
+  bool isSurviving;
   glm::vec2 position_;
   glm::vec2 velocity_;
   const cinder::ColorT<float> kColor = "blue";

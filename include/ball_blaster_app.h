@@ -27,15 +27,19 @@ class BallBlasterApp:public ci::app::App{
    */
   void keyDown(cinder::app::KeyEvent event) override;
 
+  void setup() override;
+
   /**
    * Detects the user mouse position.
    * @param event the mouse position of user
    */
   void mouseMove(cinder::app::MouseEvent event) override;
 
-private:
 
+
+private:
   BallBlasterEngine ball_blaster_engine_;
+  ci::gl::Texture2dRef texture;
   const size_t kMovePixel = 8;
   const size_t kWindowSize = 775;
   //size_t frames_per_update_ = 1;

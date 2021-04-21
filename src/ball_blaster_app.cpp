@@ -7,7 +7,13 @@ BallBlasterApp::BallBlasterApp()
   ci::app::setWindowSize(kWindowSize, kWindowSize);
 }
 
+void BallBlasterApp::setup() {
+
+  texture = ci::gl::Texture2d::create(ci::loadImage( "background.png" ));
+}
 void BallBlasterApp::draw() {
+
+  ci::gl::draw(texture);
   ci::Color background_color("black");
   ci::gl::clear(background_color);
   ball_blaster_engine_.Display();
