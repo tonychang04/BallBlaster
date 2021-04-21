@@ -54,8 +54,7 @@ include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 list(APPEND SOURCE_FILES    src/ball_blaster_app.cpp
         src/ball_blaster_engine.cpp
         src/board_player.cpp
-        src/game_ball.cpp
-        src/enemy_block.cpp)
+        src/game_ball.cpp)
 
 list(APPEND TEST_FILES tests/)
 
