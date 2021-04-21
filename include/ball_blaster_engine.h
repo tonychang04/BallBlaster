@@ -7,17 +7,28 @@
 
 namespace ballblaster {
 
+/**
+ * The main game engine of the game.
+ */
 class BallBlasterEngine {
  public:
   BallBlasterEngine(const glm::vec2& start_pixel, const glm::vec2& end_pixel, int ball_speed);
 
   /**
-   * Displays the container walls and the current positions of the particles.
+   * Displays the current game.
    */
   void Display() const;
 
+  /**
+   * Advance the game to next frame.
+   */
   void AdvanceOneFrame();
 
+  /**
+   * Move the player board by using the engine class.
+   * This method calls the 'move' method of the player board class
+   * @param distance the distance that the board will move
+   */
   void MovePlayer(int distance);
 
  private:

@@ -7,6 +7,9 @@
 
 namespace ballblaster {
 
+/**
+ * Class for the app of the game.
+ */
 class BallBlasterApp:public ci::app::App{
  public:
   BallBlasterApp();
@@ -27,13 +30,11 @@ class BallBlasterApp:public ci::app::App{
    */
   void keyDown(cinder::app::KeyEvent event) override;
 
+  /**
+   * Set up that is called once before the start of the game
+   */
   void setup() override;
 
-  /**
-   * Detects the user mouse position.
-   * @param event the mouse position of user
-   */
-  void mouseMove(cinder::app::MouseEvent event) override;
 
 
 
