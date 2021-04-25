@@ -6,6 +6,7 @@ namespace ballblaster {
 
   EnemyBlock::EnemyBlock(const glm::vec2& center) {
     center_ = center;
+
   }
   void EnemyBlock::Draw() const {
     ci::gl::color(kColor);

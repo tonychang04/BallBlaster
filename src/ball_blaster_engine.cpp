@@ -38,11 +38,15 @@ void BallBlasterEngine::AdvanceOneFrame() {
     if (!enemies_.empty()) {
       for (EnemyBlock& enemyBlock : enemies_) {
         enemyBlock.MoveOneFrame();
+        if (enemyBlock.GetCenter().x + enemyBlock.kLength + kBorderLength
+            > bottom_right_pixel_.x) {
+          enemyBlock.SetCenter(glm::vec2(3000,3000));
+        }
       }
     }
     if (frame_count_ == kSpawnEnemyFrame) {
       enemies_.push_back(glm::vec2(
-          top_left_pixel_.x + EnemyBlock::kLength,
+          top_left_pixel_.x + EnemyBlock::kLength + kBorderLength,
           ci::randFloat(
               top_left_pixel_.y + EnemyBlock::kWidth + kBorderLength,
               bottom_right_pixel_.y - EnemyBlock::kWidth - kBorderLength)));
