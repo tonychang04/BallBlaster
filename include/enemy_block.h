@@ -12,7 +12,15 @@ namespace ballblaster {
   const static size_t kWidth = 35;
   static const size_t kLength = 20;
 
+
+  void MoveOneFrame();
+
+  void SetCenter(const glm::vec2& center);
+
+  const glm::vec2& GetCenter();
  private:
+
+  const size_t kSpeed = 1;
   const cinder::ColorT<float> kColor = "purple";
   glm::vec2 center_;
 };

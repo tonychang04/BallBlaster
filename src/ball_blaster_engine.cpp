@@ -22,18 +22,24 @@ void BallBlasterEngine::Display() const {
       ci::Rectf(vec2(top_left_pixel_.y, top_left_pixel_.x),
                 vec2(bottom_right_pixel_.y, bottom_right_pixel_.x)),
       kBorderLength);
-  player_board_.Draw();
-  game_ball_.Draw();
+
   if (!enemies_.empty()) {
     for (const EnemyBlock& enemyBlock : enemies_) {
       enemyBlock.Draw();
     }
   }
+  game_ball_.Draw();
+  player_board_.Draw();
 }
 
 void BallBlasterEngine::AdvanceOneFrame() {
   ++frame_count_;
   if (game_ball_.IsSurviving()) {
+    if (!enemies_.empty()) {
+      for (EnemyBlock& enemyBlock : enemies_) {
+        enemyBlock.MoveOneFrame();
+      }
+    }
     if (frame_count_ == kSpawnEnemyFrame) {
       enemies_.push_back(glm::vec2(
           top_left_pixel_.x + EnemyBlock::kLength,
@@ -41,11 +47,6 @@ void BallBlasterEngine::AdvanceOneFrame() {
               top_left_pixel_.y + EnemyBlock::kWidth + kBorderLength,
               bottom_right_pixel_.y - EnemyBlock::kWidth - kBorderLength)));
       frame_count_ = 0;
-    }
-    if (!enemies_.empty()) {
-      for (const EnemyBlock& enemyBlock : enemies_) {
-        enemyBlock
-      }
     }
 
     game_ball_.ProcessCollidePlayer(player_board_);
