@@ -9,11 +9,7 @@ BallBlasterApp::BallBlasterApp()
 
 void BallBlasterApp::setup() {
 
-
-  std::string filpath = "background.jpg";
- // cinder::Surface bitmap(ci::loadImage(filpath));
-  //texture = ci::gl::Texture2d::create(bitmap);
-  texture = ci::gl::Texture2d::create(ci::loadImage(filpath));
+  texture = ci::gl::Texture2d::create(ci::loadImage(kBackgroundFilePath));
 }
 void BallBlasterApp::draw() {
 

@@ -36,8 +36,8 @@ class BallBlasterEngine {
   const size_t kBorderLength = 5;
   BoardPlayer player_board_;
   GameBall game_ball_;
-  glm::vec2 start_pixel_;
-  glm::vec2 end_pixel_;
+  glm::vec2 top_left_pixel_;
+  glm::vec2 bottom_right_pixel_;
 };
 }
 
