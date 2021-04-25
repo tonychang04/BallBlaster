@@ -3,6 +3,7 @@
 #include <glm/vec2.hpp>
 
 #include "board_player.h"
+#include "enemy_block.h"
 #include "game_ball.h"
 
 namespace ballblaster {
@@ -34,6 +35,7 @@ class BallBlasterEngine {
  private:
 
   const size_t kBorderLength = 5;
+  std::vector<EnemyBlock> enemies;
   BoardPlayer player_board_;
   GameBall game_ball_;
   glm::vec2 top_left_pixel_;

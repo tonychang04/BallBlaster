@@ -21,10 +21,19 @@ void BallBlasterEngine::Display() const {
                           kBorderLength);
   player_board_.Draw();
   game_ball_.Draw();
+  for (const EnemyBlock& enemyBlock : enemies) {
+    enemyBlock.
+  }
 }
 
 void BallBlasterEngine::AdvanceOneFrame() {
+  enemies.push_back(glm::vec2(100,100));
   if (game_ball_.IsSurviving()) {
+    if (!enemies.empty()) {
+      for (const EnemyBlock& enemyBlock : enemies) {
+
+      }
+    }
     game_ball_.ProcessCollidePlayer(player_board_);
     game_ball_.ProcessCollideWall(top_left_pixel_, bottom_right_pixel_, kBorderLength);
     game_ball_.SetPosition(
