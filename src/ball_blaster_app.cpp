@@ -12,7 +12,7 @@ void BallBlasterApp::setup() {
   texture = ci::gl::Texture2d::create(ci::loadImage(kBackgroundFilePath));
 }
 void BallBlasterApp::draw() {
-
+  ci::gl::color(ci::Color("blue"));
   ci::gl::draw(texture);
   ball_blaster_engine_.Display();
 }

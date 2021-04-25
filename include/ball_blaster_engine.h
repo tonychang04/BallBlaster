@@ -34,8 +34,12 @@ class BallBlasterEngine {
 
  private:
 
+  const size_t kSpawnEnemyFrame = 100;
   const size_t kBorderLength = 5;
-  std::vector<EnemyBlock> enemies;
+  const glm::vec2 kEnemyVelocity = glm::vec2(1,0);
+
+  size_t frame_count_;
+  std::vector<EnemyBlock> enemies_;
   BoardPlayer player_board_;
   GameBall game_ball_;
   glm::vec2 top_left_pixel_;

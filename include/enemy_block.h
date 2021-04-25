@@ -6,12 +6,14 @@ namespace ballblaster {
 
   class EnemyBlock {
  public:
-  void Draw();
+  void Draw() const;
   EnemyBlock(const glm::vec2& center);
+
+  const static size_t kWidth = 35;
+  static const size_t kLength = 20;
+
  private:
-  const cinder::ColorT<float> kColor = "pixie powder";
-  size_t kLength = 10;
-  size_t kWidth = 5;
+  const cinder::ColorT<float> kColor = "purple";
   glm::vec2 center_;
 };
 }
