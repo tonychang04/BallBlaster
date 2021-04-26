@@ -32,11 +32,21 @@ class BallBlasterEngine {
    */
   void MovePlayer(int distance);
 
+  void Restart();
+
  private:
 
   const size_t kSpawnEnemyFrame = 100;
   const size_t kBorderLength = 5;
-  const glm::vec2 kEnemyVelocity = glm::vec2(1,0);
+
+  size_t player_score_;
+  std::string kScoreMessage = "Score: ";
+  const glm::vec2 kScoreLocation = glm::vec2(600, 300);
+  ci::Font kScoreFont = ci::Font("Helvetica Neue", 30);
+
+  glm::vec2 initial_player_pos_;
+  glm::vec2 initial_ball_pos_;
+  int initial_ball_speed;
 
   size_t frame_count_;
   std::list <EnemyBlock> enemies_;

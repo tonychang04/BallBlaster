@@ -12,6 +12,10 @@ BallBlasterEngine::BallBlasterEngine(const glm::vec2& top_left_pixel,
       game_ball_(glm::vec2(300, 300),
                  glm::vec2(ci::randFloat(-ball_speed, ball_speed),
                            ci::randFloat(-ball_speed, 0))) {
+  initial_player_pos_ = player_board_.GetCenter();
+  initial_ball_pos_ = game_ball_.GetPosition();
+  initial_ball_speed = ball_speed;
+  player_score_ = 0;
   frame_count_ = 0;
   top_left_pixel_ = top_left_pixel;
   bottom_right_pixel_ = bottom_right_pixel;
@@ -22,6 +26,9 @@ void BallBlasterEngine::Display() const {
       ci::Rectf(vec2(top_left_pixel_.y, top_left_pixel_.x),
                 vec2(bottom_right_pixel_.y, bottom_right_pixel_.x)),
       kBorderLength);
+
+  ci::gl::drawString(kScoreMessage + std::to_string(player_score_), kScoreLocation,
+                     ci::Color("white") , kScoreFont);
 
   if (!enemies_.empty()) {
     for (const EnemyBlock& enemyBlock : enemies_) {
@@ -56,6 +63,7 @@ void BallBlasterEngine::AdvanceOneFrame() {
               top_left_pixel_.y + EnemyBlock::kWidth + kBorderLength,
               bottom_right_pixel_.y - EnemyBlock::kWidth - kBorderLength)));
       frame_count_ = 0;
+      ++player_score_;
     }
 
     game_ball_.ProcessCollideEnemy(enemies_);
@@ -71,5 +79,15 @@ void BallBlasterEngine::AdvanceOneFrame() {
 }
 void BallBlasterEngine::MovePlayer(int distance) {
   player_board_.move(distance);
+}
+
+void BallBlasterEngine::Restart() {
+  game_ball_.SetPosition(initial_ball_pos_);
+  player_board_.SetCenter(initial_player_pos_);
+  game_ball_.SetVelocity(glm::vec2(ci::randFloat(-initial_ball_speed, initial_ball_speed),
+                                   ci::randFloat(-initial_ball_speed, 0)));
+  enemies_.clear();
+  game_ball_.RestartSurvival();
+  player_score_ = 0;
 }
 }  // namespace ballblaster

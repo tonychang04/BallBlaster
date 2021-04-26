@@ -24,6 +24,10 @@ void GameBall::SetPosition(const glm::vec2& position) {
   position_ = position;
 }
 
+void GameBall::RestartSurvival() {
+  isSurviving = true;
+}
+
 const glm::vec2& GameBall::GetVelocity() const {
   return velocity_;
 }
@@ -57,7 +61,8 @@ bool GameBall::IsSurviving() {
   return isSurviving;
 }
 void GameBall::ProcessCollidePlayer(const BoardPlayer& player) {
-  // if game ball reaches the location of board and player is moving towards the board
+  // if game ball reaches the location of board and player is moving towards the
+  // board
   if (position_.y >= player.GetCenter().x - player.GetLength() - kRadius &&
       velocity_.y > 0) {
     // if game ball touches the player board
@@ -71,28 +76,31 @@ void GameBall::ProcessCollidePlayer(const BoardPlayer& player) {
 }
 
 void GameBall::ProcessCollideEnemy(std::list<EnemyBlock>& enemies) {
-
   std::list<EnemyBlock>::iterator enemy_iterator;
-  for (enemy_iterator = enemies.begin(); enemy_iterator != enemies.end(); ++enemy_iterator) {
-    if (((position_.y >=
-        enemy_iterator->GetCenter().x - enemy_iterator->kLength - kRadius &&
-        position_.y < enemy_iterator->GetCenter().x) ||
-        (position_.y <=
-         enemy_iterator->GetCenter().x + enemy_iterator->kLength + kRadius &&
-         position_.y > enemy_iterator->GetCenter().x)) &&
+  for (enemy_iterator = enemies.begin(); enemy_iterator != enemies.end();
+       ++enemy_iterator) {
+    if (((position_.y >= enemy_iterator->GetCenter().x -
+                             enemy_iterator->kLength - kRadius &&
+          position_.y < enemy_iterator->GetCenter().x) ||
+         (position_.y <= enemy_iterator->GetCenter().x +
+                             enemy_iterator->kLength + kRadius &&
+          position_.y > enemy_iterator->GetCenter().x)) &&
         (position_.y - enemy_iterator->GetCenter().x) * velocity_.y < 0) {
-      if (position_.x <= enemy_iterator->GetCenter().y + enemy_iterator->kWidth + kRadius &&
-          position_.x >= enemy_iterator->GetCenter().y - enemy_iterator->kWidth - kRadius) {
+      if (position_.x <= enemy_iterator->GetCenter().y +
+                             enemy_iterator->kWidth + kRadius &&
+          position_.x >= enemy_iterator->GetCenter().y -
+                             enemy_iterator->kWidth - kRadius) {
         velocity_.y = -velocity_.y;
         enemies.erase(enemy_iterator);
       }
-    } else if (((position_.x >=
-              enemy_iterator->GetCenter().y - enemy_iterator->kWidth - kRadius &&
-              position_.x < enemy_iterator->GetCenter().y) ||
-             (position_.x <=
-              enemy_iterator->GetCenter().y + enemy_iterator->kWidth + kRadius &&
-              position_.x > enemy_iterator->GetCenter().y)) &&
-            (position_.x - enemy_iterator->GetCenter().y) * velocity_.x < 0) {
+    } else if (((position_.x >= enemy_iterator->GetCenter().y -
+                                    enemy_iterator->kWidth - kRadius &&
+                 position_.x < enemy_iterator->GetCenter().y) ||
+                (position_.x <= enemy_iterator->GetCenter().y +
+                                    enemy_iterator->kWidth + kRadius &&
+                 position_.x > enemy_iterator->GetCenter().y)) &&
+               (position_.x - enemy_iterator->GetCenter().y) * velocity_.x <
+                   0) {
       if (position_.y <= enemy_iterator->GetCenter().x +
                              enemy_iterator->kLength + kRadius &&
           position_.y >= enemy_iterator->GetCenter().x -
@@ -101,8 +109,6 @@ void GameBall::ProcessCollideEnemy(std::list<EnemyBlock>& enemies) {
         enemies.erase(enemy_iterator);
       }
     }
-
-
   }
 }
-}
+}  // namespace ballblaster

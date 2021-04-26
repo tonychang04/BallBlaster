@@ -27,6 +27,8 @@ namespace ballblaster {
 
     const glm::vec2& GetCenter() const;
 
+    void SetCenter(const glm::vec2& position);
+
    private:
     const cinder::ColorT<float> kColor  = "gray";
     glm::vec2 center_;

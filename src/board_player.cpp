@@ -28,4 +28,11 @@ namespace ballblaster {
   const glm::vec2& BoardPlayer::GetCenter() const {
     return center_;
   }
+
+void BoardPlayer::SetCenter(const glm::vec2& center) {
+  if (center[0] < 0 || center[1] < 0) {
+    throw std::invalid_argument("This is not a valid position");
+  }
+  center_ = center;
+}
 }
