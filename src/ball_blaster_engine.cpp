@@ -34,13 +34,18 @@ void BallBlasterEngine::Display() const {
 
 void BallBlasterEngine::AdvanceOneFrame() {
   ++frame_count_;
+  // if the player is still surviving
   if (game_ball_.IsSurviving()) {
+    // if there is enemy
     if (!enemies_.empty()) {
-      for (EnemyBlock& enemyBlock : enemies_) {
-        enemyBlock.MoveOneFrame();
-        if (enemyBlock.GetCenter().x + enemyBlock.kLength + kBorderLength
+      // loop through the enemy
+      std::list<EnemyBlock>::iterator enemy_iterator;
+      for (enemy_iterator = enemies_.begin(); enemy_iterator != enemies_.end(); ++enemy_iterator) {
+       enemy_iterator->MoveOneFrame();
+        if (enemy_iterator->GetCenter().x + enemy_iterator->kLength + kBorderLength
             > bottom_right_pixel_.x) {
-          enemyBlock.SetCenter(glm::vec2(3000,3000));
+          // let the enemy block disappear
+          enemies_.erase(enemy_iterator);
         }
       }
     }
@@ -53,6 +58,7 @@ void BallBlasterEngine::AdvanceOneFrame() {
       frame_count_ = 0;
     }
 
+    game_ball_.ProcessCollideEnemy(enemies_);
     game_ball_.ProcessCollidePlayer(player_board_);
     game_ball_.ProcessCollideWall(top_left_pixel_, bottom_right_pixel_,
                                   kBorderLength);
