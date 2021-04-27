@@ -8,7 +8,6 @@ BallBlasterApp::BallBlasterApp()
 }
 
 void BallBlasterApp::setup() {
-
   texture = ci::gl::Texture2d::create(ci::loadImage(kBackgroundFilePath));
 }
 void BallBlasterApp::draw() {

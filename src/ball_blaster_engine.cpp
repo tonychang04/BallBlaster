@@ -89,7 +89,16 @@ void BallBlasterEngine::AdvanceOneFrame() {
   }
 }
 void BallBlasterEngine::MovePlayer(int distance) {
-  player_board_.move(distance);
+  if (game_ball_.IsSurviving()) {
+    if (!(player_board_.GetCenter().y + player_board_.GetWidth() + distance + kBorderLength >
+              bottom_right_pixel_.y &&
+          distance > 0) &&
+        (!(player_board_.GetCenter().y - player_board_.GetWidth() + distance - kBorderLength <
+          top_left_pixel_.y &&
+         distance < 0))) {
+      player_board_.move(distance);
+    }
+  }
 }
 
 void BallBlasterEngine::Restart() {
