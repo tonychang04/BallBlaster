@@ -24,8 +24,8 @@ void GameBall::SetPosition(const glm::vec2& position) {
   position_ = position;
 }
 
-void GameBall::RestartSurvival() {
-  isSurviving = true;
+void GameBall::SetSurviving(bool surviving) {
+  isSurviving = surviving;
 }
 
 const glm::vec2& GameBall::GetVelocity() const {
@@ -79,33 +79,34 @@ void GameBall::ProcessCollideEnemy(std::list<EnemyBlock>& enemies) {
   std::list<EnemyBlock>::iterator enemy_iterator;
   for (enemy_iterator = enemies.begin(); enemy_iterator != enemies.end();
        ++enemy_iterator) {
-    if (((position_.y >= enemy_iterator->GetCenter().x -
-                             enemy_iterator->kLength - kRadius &&
-          position_.y < enemy_iterator->GetCenter().x) ||
-         (position_.y <= enemy_iterator->GetCenter().x +
-                             enemy_iterator->kLength + kRadius &&
-          position_.y > enemy_iterator->GetCenter().x)) &&
-        (position_.y - enemy_iterator->GetCenter().x) * velocity_.y < 0) {
-      if (position_.x <= enemy_iterator->GetCenter().y +
-                             enemy_iterator->kWidth + kRadius &&
-          position_.x >= enemy_iterator->GetCenter().y -
-                             enemy_iterator->kWidth - kRadius) {
-        velocity_.y = -velocity_.y;
+    if (((position_.x > enemy_iterator->GetCenter().y -
+                        enemy_iterator->kWidth - kRadius &&
+          position_.x < enemy_iterator->GetCenter().y - kRadius) ||
+         (position_.x < enemy_iterator->GetCenter().y +
+                        enemy_iterator->kWidth + kRadius &&
+          position_.x > enemy_iterator->GetCenter().y + kRadius)) &&
+        (position_.x - enemy_iterator->GetCenter().y) * velocity_.x <
+        0) {
+      if (position_.y < enemy_iterator->GetCenter().x +
+                         enemy_iterator->kLength + kRadius &&
+          position_.y > enemy_iterator->GetCenter().x -
+                         enemy_iterator->kLength - kRadius) {
+        velocity_.x = -velocity_.x;
         enemies.erase(enemy_iterator);
       }
-    } else if (((position_.x >= enemy_iterator->GetCenter().y -
-                                    enemy_iterator->kWidth - kRadius &&
-                 position_.x < enemy_iterator->GetCenter().y) ||
-                (position_.x <= enemy_iterator->GetCenter().y +
-                                    enemy_iterator->kWidth + kRadius &&
-                 position_.x > enemy_iterator->GetCenter().y)) &&
-               (position_.x - enemy_iterator->GetCenter().y) * velocity_.x <
-                   0) {
-      if (position_.y <= enemy_iterator->GetCenter().x +
-                             enemy_iterator->kLength + kRadius &&
-          position_.y >= enemy_iterator->GetCenter().x -
-                             enemy_iterator->kLength - kRadius) {
-        velocity_.x = -velocity_.x;
+    }
+    else if (((position_.y > enemy_iterator->GetCenter().x -
+                        enemy_iterator->kLength - kRadius &&
+          position_.y < enemy_iterator->GetCenter().x - kRadius) ||
+         (position_.y < enemy_iterator->GetCenter().x +
+                        enemy_iterator->kLength + kRadius &&
+          position_.y > enemy_iterator->GetCenter().x + kRadius)) &&
+        (position_.y - enemy_iterator->GetCenter().x) * velocity_.y < 0) {
+      if (position_.x < enemy_iterator->GetCenter().y +
+                        enemy_iterator->kWidth + kRadius &&
+          position_.x > enemy_iterator->GetCenter().y -
+                         enemy_iterator->kWidth - kRadius) {
+        velocity_.y = -velocity_.y;
         enemies.erase(enemy_iterator);
       }
     }

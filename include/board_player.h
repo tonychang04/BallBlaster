@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cinder/gl/gl.h"
+#include "enemy_block.h"
 
 namespace ballblaster {
 /**
@@ -28,6 +29,8 @@ namespace ballblaster {
     const glm::vec2& GetCenter() const;
 
     void SetCenter(const glm::vec2& position);
+
+    bool HasCollideEnemy(const std::list<EnemyBlock>& enemies);
 
    private:
     const cinder::ColorT<float> kColor  = "gray";

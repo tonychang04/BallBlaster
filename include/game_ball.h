@@ -47,7 +47,7 @@ class GameBall {
 
   const glm::vec2& GetVelocity() const;
 
-  void RestartSurvival();
+  void SetSurviving(bool surviving);
 
   void SetVelocity(const glm::vec2& velocity);
 

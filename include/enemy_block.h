@@ -12,12 +12,11 @@ namespace ballblaster {
   const static size_t kWidth = 35;
   static const size_t kLength = 20;
 
-
   void MoveOneFrame();
 
   void SetCenter(const glm::vec2& center);
 
-  const glm::vec2& GetCenter();
+  const glm::vec2& GetCenter() const;
  private:
 
   const size_t kSpeed = 1;

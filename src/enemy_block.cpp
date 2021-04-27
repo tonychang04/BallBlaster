@@ -23,7 +23,7 @@ void EnemyBlock::SetCenter(const glm::vec2& center) {
   center_ = center;
 }
 
-const glm::vec2& EnemyBlock::GetCenter() {
+const glm::vec2& EnemyBlock::GetCenter() const {
   return center_;
 }
 }

@@ -27,8 +27,8 @@ void BallBlasterEngine::Display() const {
                 vec2(bottom_right_pixel_.y, bottom_right_pixel_.x)),
       kBorderLength);
 
-  ci::gl::drawString(kScoreMessage + std::to_string(player_score_), kScoreLocation,
-                     ci::Color("white") , kScoreFont);
+  ci::gl::drawString(kScoreMessage + std::to_string(player_score_),
+                     kScoreLocation, ci::Color("white"), kScoreFont);
 
   if (!enemies_.empty()) {
     for (const EnemyBlock& enemyBlock : enemies_) {
@@ -47,10 +47,12 @@ void BallBlasterEngine::AdvanceOneFrame() {
     if (!enemies_.empty()) {
       // loop through the enemy
       std::list<EnemyBlock>::iterator enemy_iterator;
-      for (enemy_iterator = enemies_.begin(); enemy_iterator != enemies_.end(); ++enemy_iterator) {
-       enemy_iterator->MoveOneFrame();
-        if (enemy_iterator->GetCenter().x + enemy_iterator->kLength + kBorderLength
-            > bottom_right_pixel_.x) {
+      for (enemy_iterator = enemies_.begin(); enemy_iterator != enemies_.end();
+           ++enemy_iterator) {
+        enemy_iterator->MoveOneFrame();
+        if (enemy_iterator->GetCenter().x + enemy_iterator->kLength +
+                kBorderLength >
+            bottom_right_pixel_.x) {
           // let the enemy block disappear
           enemies_.erase(enemy_iterator);
         }
@@ -66,7 +68,16 @@ void BallBlasterEngine::AdvanceOneFrame() {
       ++player_score_;
     }
 
+    size_t current_enemies = enemies_.size();
     game_ball_.ProcessCollideEnemy(enemies_);
+    if (current_enemies != enemies_.size()) {
+      ++player_score_;
+    }
+
+    if (player_board_.HasCollideEnemy(enemies_)) {
+      game_ball_.SetSurviving(false);
+    }
+
     game_ball_.ProcessCollidePlayer(player_board_);
     game_ball_.ProcessCollideWall(top_left_pixel_, bottom_right_pixel_,
                                   kBorderLength);
@@ -84,10 +95,12 @@ void BallBlasterEngine::MovePlayer(int distance) {
 void BallBlasterEngine::Restart() {
   game_ball_.SetPosition(initial_ball_pos_);
   player_board_.SetCenter(initial_player_pos_);
-  game_ball_.SetVelocity(glm::vec2(ci::randFloat(-initial_ball_speed, initial_ball_speed),
-                                   ci::randFloat(-initial_ball_speed, 0)));
+  game_ball_.SetVelocity(
+      glm::vec2(ci::randFloat(-initial_ball_speed, initial_ball_speed),
+                ci::randFloat(-initial_ball_speed, 0)));
   enemies_.clear();
-  game_ball_.RestartSurvival();
+  game_ball_.SetSurviving(true);
+  frame_count_ = 0;
   player_score_ = 0;
 }
 }  // namespace ballblaster
