@@ -30,6 +30,11 @@ namespace ballblaster {
 
     void SetCenter(const glm::vec2& position);
 
+    /**
+     * Detects if the player has collided enemy
+     * @param enemies a list of enemies
+     * @return boolean value of whether or not player collided enemy
+     */
     bool HasCollideEnemy(const std::list<EnemyBlock>& enemies);
 
    private:

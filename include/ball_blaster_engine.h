@@ -32,6 +32,9 @@ class BallBlasterEngine {
    */
   void MovePlayer(int distance);
 
+  /**
+   * Restart the game engine.
+   */
   void Restart();
 
  private:
