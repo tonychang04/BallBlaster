@@ -9,6 +9,9 @@ BallBlasterApp::BallBlasterApp()
 
 void BallBlasterApp::setup() {
   texture = ci::gl::Texture2d::create(ci::loadImage(kBackgroundFilePath));
+  cinder::audio::SourceFileRef sourceFile = ci::audio::load(cinder::loadFile(kSoundFilePath));
+  music = ci::audio::Voice::create( sourceFile );
+  music->start();
 }
 void BallBlasterApp::draw() {
   ci::gl::color(ci::Color("blue"));
@@ -30,6 +33,8 @@ void BallBlasterApp::keyDown(cinder::app::KeyEvent event) {
       break;
     case ci::app::KeyEvent::KEY_r:
       ball_blaster_engine_.Restart();
+      music->stop();
+      music->start();
       break;
   }
 }

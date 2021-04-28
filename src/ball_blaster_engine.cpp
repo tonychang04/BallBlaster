@@ -49,7 +49,7 @@ void BallBlasterEngine::AdvanceOneFrame() {
       std::list<EnemyBlock>::iterator enemy_iterator;
       for (enemy_iterator = enemies_.begin(); enemy_iterator != enemies_.end();
            ++enemy_iterator) {
-        enemy_iterator->MoveOneFrame();
+        enemy_iterator->MoveOneUpdate();
         if (enemy_iterator->GetCenter().x + enemy_iterator->kLength +
                 kBorderLength >
             bottom_right_pixel_.x) {

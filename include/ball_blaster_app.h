@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ball_blaster_engine.h"
+#include "cinder/audio/Voice.h"
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
@@ -39,8 +40,11 @@ class BallBlasterApp:public ci::app::App{
 
 
 private:
+
   const std::string kBackgroundFilePath = "background.jpg";
+  const std::string kSoundFilePath = "sounds/music.mp3";
   BallBlasterEngine ball_blaster_engine_;
+  ci::audio::VoiceRef music;
   ci::gl::Texture2dRef texture;
 
   const size_t kMovePixel = 8;

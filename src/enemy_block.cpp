@@ -13,7 +13,7 @@ namespace ballblaster {
                                     glm::vec2(center_.y + kWidth, center_.x + kLength)));
   }
 
-  void EnemyBlock::MoveOneFrame() {
+  void EnemyBlock::MoveOneUpdate() {
       center_.x = center_.x + kSpeed;
   };
 void EnemyBlock::SetCenter(const glm::vec2& center) {
