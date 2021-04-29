@@ -13,7 +13,21 @@ namespace ballblaster {
  */
 class BallBlasterEngine {
  public:
-  BallBlasterEngine(const glm::vec2& start_pixel, const glm::vec2& end_pixel, int ball_speed);
+  BallBlasterEngine(const glm::vec2& top_left, const glm::vec2& bottom_right,
+                    int ball_speed);
+
+  /**
+   * Constructor for testing purposes.
+   * @param top_left the top left pixel of the container
+   * @param bottom_right the bottom right pixel of the container
+   * @param board_pos the board starting position
+   * @param ball_speed the speed of the ball
+   * @param ball_position the starting position of the ball
+   * @param enemies the list of enemies
+   */
+  BallBlasterEngine(const glm::vec2& top_left, const glm::vec2& bottom_right,
+                    const glm::vec2& board_pos, const glm::vec2& ball_speed,
+                    const glm::vec2& ball_position, const std::list<EnemyBlock>& enemies);
 
   /**
    * Displays the current game.
@@ -54,11 +68,10 @@ class BallBlasterEngine {
   int initial_ball_speed;
 
   size_t frame_count_;
-  std::list <EnemyBlock> enemies_;
+  std::list<EnemyBlock> enemies_;
   BoardPlayer player_board_;
   GameBall game_ball_;
   glm::vec2 top_left_pixel_;
   glm::vec2 bottom_right_pixel_;
 };
-}
-
+}  // namespace ballblaster

@@ -57,7 +57,8 @@ list(APPEND SOURCE_FILES    src/ball_blaster_app.cpp
         src/game_ball.cpp
         src/enemy_block.cpp)
 
-list(APPEND TEST_FILES tests/)
+list(APPEND TEST_FILES tests/ball_blaster_engine_test.cpp
+        tests/ball_test.cpp)
 
 
 ci_make_app(

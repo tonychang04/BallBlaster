@@ -6,10 +6,10 @@
 namespace ballblaster {
 GameBall::GameBall(const glm::vec2& position, const glm::vec2& velocity) {
   position_ = position;
-  if (velocity.x > 0 && velocity.x < 1) {
-    velocity_ = glm::vec2(velocity.x + 2, velocity.y);
-  } else if (velocity.x < 0 && velocity.x > -1) {
-    velocity_ = glm::vec2(velocity.x - 2, velocity.y);
+  if (velocity.y > 0 && velocity.y < 1) {
+    velocity_ = glm::vec2(velocity.x + 4, velocity.y);
+  } else if (velocity.y < 0 && velocity.y > -1) {
+    velocity_ = glm::vec2(velocity.x - 4, velocity.y);
   } else {
     velocity_ = velocity;
   }
