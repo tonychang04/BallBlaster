@@ -31,8 +31,8 @@ namespace ballblaster {
 
   bool BoardPlayer::HasCollideEnemy(const std::list<EnemyBlock>& enemies) {
     for (const EnemyBlock& enemy : enemies) {
-      if (enemy.GetCenter().x + enemy.kLength > center_.x - kLength &&
-          enemy.GetCenter().x + enemy.kLength < center_.x) {
+      if (enemy.GetCenter().x + enemy.kLength > center_.x - kLength)
+      {
         if ((center_.y + kWidth > enemy.GetCenter().y - enemy.kWidth &&
             center_.y - kWidth < enemy.GetCenter().y - enemy.kWidth) ||
             (center_.y - kWidth < enemy.GetCenter().y + enemy.kWidth &&

@@ -41,14 +41,17 @@ class BallBlasterApp:public ci::app::App{
 
 private:
 
-  const std::string kBackgroundFilePath = "background.jpg";
-  const std::string kSoundFilePath = "sounds/music.mp3";
+  const std::string kBackgroundFilePath = "assets/background.jpg";
+  const std::string kSoundFilePath = "assets/music.mp3";
+
   BallBlasterEngine ball_blaster_engine_;
+  bool isStarted_;
+
   ci::audio::VoiceRef music;
+  const cinder::ColorT<float> kTextureColor  = "blue";
   ci::gl::Texture2dRef texture;
 
   const size_t kMovePixel = 8;
   const size_t kWindowSize = 775;
-
 };
 };

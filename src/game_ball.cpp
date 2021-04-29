@@ -57,7 +57,7 @@ void GameBall::ProcessCollideWall(const glm::vec2& start_pixel,
     velocity_.y = -velocity_.y;
   }
 }
-bool GameBall::IsSurviving() {
+bool GameBall::IsSurviving() const {
   return isSurviving;
 }
 void GameBall::ProcessCollidePlayer(const BoardPlayer& player) {

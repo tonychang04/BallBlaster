@@ -5,6 +5,7 @@ namespace ballblaster {
 BallBlasterApp::BallBlasterApp()
     : ball_blaster_engine_(glm::vec2(100, 100), glm::vec2(750, 550), 8) {
   ci::app::setWindowSize(kWindowSize, kWindowSize);
+  isStarted_ = false;
 }
 
 void BallBlasterApp::setup() {
@@ -14,13 +15,15 @@ void BallBlasterApp::setup() {
   music->start();
 }
 void BallBlasterApp::draw() {
-  ci::gl::color(ci::Color("blue"));
+  ci::gl::color(kTextureColor);
   ci::gl::draw(texture);
   ball_blaster_engine_.Display();
 }
 
 void BallBlasterApp::update() {
-  ball_blaster_engine_.AdvanceOneFrame();
+  if (isStarted_) {
+    ball_blaster_engine_.AdvanceOneFrame();
+  }
 }
 
 void BallBlasterApp::keyDown(cinder::app::KeyEvent event) {
@@ -35,6 +38,9 @@ void BallBlasterApp::keyDown(cinder::app::KeyEvent event) {
       ball_blaster_engine_.Restart();
       music->stop();
       music->start();
+      break;
+    case ci::app::KeyEvent::KEY_s:
+      isStarted_ = true;
       break;
   }
 }

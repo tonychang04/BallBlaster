@@ -1,4 +1,3 @@
-
 #include <ball_blaster_engine.h>
 
 #include "cinder/Rand.h"
@@ -21,6 +20,10 @@ BallBlasterEngine::BallBlasterEngine(const glm::vec2& top_left_pixel,
   bottom_right_pixel_ = bottom_right_pixel;
 }
 void BallBlasterEngine::Display() const {
+  if (!game_ball_.IsSurviving()) {
+    ci::gl::drawString("Game Over! Press r to restart game", kEndScreenPosition,
+                       ci::Color("white"), kEndScreenFont);
+  }
   ci::gl::color(ci::Color("white"));
   ci::gl::drawStrokedRect(
       ci::Rectf(vec2(top_left_pixel_.y, top_left_pixel_.x),
@@ -84,18 +87,18 @@ void BallBlasterEngine::AdvanceOneFrame() {
     game_ball_.SetPosition(
         glm::vec2(game_ball_.GetPosition().x + game_ball_.GetVelocity().x,
                   game_ball_.GetPosition().y + game_ball_.GetVelocity().y));
-  } else {
-    // end the game
   }
 }
 void BallBlasterEngine::MovePlayer(int distance) {
   if (game_ball_.IsSurviving()) {
-    if (!(player_board_.GetCenter().y + player_board_.GetWidth() + distance + kBorderLength >
+    if (!(player_board_.GetCenter().y + player_board_.GetWidth() + distance +
+                  kBorderLength >
               bottom_right_pixel_.y &&
           distance > 0) &&
-        (!(player_board_.GetCenter().y - player_board_.GetWidth() + distance - kBorderLength <
-          top_left_pixel_.y &&
-         distance < 0))) {
+        (!(player_board_.GetCenter().y - player_board_.GetWidth() + distance -
+                   kBorderLength <
+               top_left_pixel_.y &&
+           distance < 0))) {
       player_board_.move(distance);
     }
   }

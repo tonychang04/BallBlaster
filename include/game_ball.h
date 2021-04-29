@@ -38,7 +38,7 @@ class GameBall {
    * Determine whether the ball is still surviving.
    * @return a boolean determining if the ball is surviving
    */
-  bool IsSurviving();
+  bool IsSurviving() const;
 
 
   const glm::vec2& GetPosition() const;
