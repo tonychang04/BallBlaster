@@ -10,7 +10,7 @@ BallBlasterEngine::BallBlasterEngine(const glm::vec2& top_left_pixel,
     : player_board_(glm::vec2(700, 325)),
       game_ball_(glm::vec2(300, 300),
                  glm::vec2(ci::randFloat(-ball_speed, ball_speed),
-                           ci::randFloat(-ball_speed, 0))) {
+                           -ball_speed)) {
   initial_player_pos_ = player_board_.GetCenter();
   initial_ball_pos_ = game_ball_.GetPosition();
   initial_ball_speed = ball_speed;
@@ -109,7 +109,7 @@ void BallBlasterEngine::Restart() {
   player_board_.SetCenter(initial_player_pos_);
   game_ball_.SetVelocity(
       glm::vec2(ci::randFloat(-initial_ball_speed, initial_ball_speed),
-                ci::randFloat(-initial_ball_speed, 0)));
+               -initial_ball_speed));
   enemies_.clear();
   game_ball_.SetSurviving(true);
   frame_count_ = 0;

@@ -3,7 +3,7 @@
 
 namespace ballblaster {
 BallBlasterApp::BallBlasterApp()
-    : ball_blaster_engine_(glm::vec2(100, 100), glm::vec2(750, 550), 8) {
+    : ball_blaster_engine_(glm::vec2(100, 100), glm::vec2(750, 550), 5) {
   ci::app::setWindowSize(kWindowSize, kWindowSize);
   isStarted_ = false;
 }
