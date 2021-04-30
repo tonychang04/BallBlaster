@@ -28,4 +28,26 @@ namespace ballblaster {
   const glm::vec2& BoardPlayer::GetCenter() const {
     return center_;
   }
+
+  bool BoardPlayer::HasCollideEnemy(const std::list<EnemyBlock>& enemies) {
+    for (const EnemyBlock& enemy : enemies) {
+      if (enemy.GetCenter().x + enemy.kLength > center_.x - kLength &&
+          enemy.GetCenter().x + enemy.kLength < center_.x) {
+        if ((center_.y + kWidth > enemy.GetCenter().y - enemy.kWidth &&
+            center_.y - kWidth < enemy.GetCenter().y - enemy.kWidth) ||
+            (center_.y - kWidth < enemy.GetCenter().y + enemy.kWidth &&
+             center_.y + kWidth > enemy.GetCenter().y + enemy.kWidth)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+void BoardPlayer::SetCenter(const glm::vec2& center) {
+  if (center[0] < 0 || center[1] < 0) {
+    throw std::invalid_argument("This is not a valid position");
+  }
+  center_ = center;
+}
 }

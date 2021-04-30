@@ -27,9 +27,9 @@ up. Furthermore, I will set up the basic ball bouncing
 mechanism and add the bricks.
 
 **Week 2:**
-I will have added different types "enemies",
+I will have added "enemies",
 which are moving bricks 
-that takes several hits to "vanish. I will also set up
+that requires player ball collision to "vanish. I will also set up
 the losing condition and add some graphics.
 
 **Week3:**

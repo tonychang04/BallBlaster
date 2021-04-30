@@ -4,6 +4,7 @@
 
 #include "board_player.h"
 #include "cinder/gl/gl.h"
+#include "enemy_block.h"
 
 namespace ballblaster {
 /**
@@ -32,6 +33,7 @@ class GameBall {
    */
   void ProcessCollidePlayer(const BoardPlayer& player);
 
+  void ProcessCollideEnemy(std::list<EnemyBlock>& enemies);
   /**
    * Determine whether the ball is still surviving.
    * @return a boolean determining if the ball is surviving
@@ -44,6 +46,8 @@ class GameBall {
   void SetPosition(const glm::vec2& position);
 
   const glm::vec2& GetVelocity() const;
+
+  void SetSurviving(bool surviving);
 
   void SetVelocity(const glm::vec2& velocity);
 

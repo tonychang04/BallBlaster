@@ -8,15 +8,10 @@ BallBlasterApp::BallBlasterApp()
 }
 
 void BallBlasterApp::setup() {
-
-
-  std::string filpath = "background.jpg";
- // cinder::Surface bitmap(ci::loadImage(filpath));
-  //texture = ci::gl::Texture2d::create(bitmap);
-  texture = ci::gl::Texture2d::create(ci::loadImage(filpath));
+  texture = ci::gl::Texture2d::create(ci::loadImage(kBackgroundFilePath));
 }
 void BallBlasterApp::draw() {
-
+  ci::gl::color(ci::Color("blue"));
   ci::gl::draw(texture);
   ball_blaster_engine_.Display();
 }
@@ -29,10 +24,12 @@ void BallBlasterApp::keyDown(cinder::app::KeyEvent event) {
   switch (event.getCode()) {
     case ci::app::KeyEvent::KEY_RIGHT:
       ball_blaster_engine_.MovePlayer(kMovePixel);
-
       break;
     case ci::app::KeyEvent::KEY_LEFT:
       ball_blaster_engine_.MovePlayer(-kMovePixel);
+      break;
+    case ci::app::KeyEvent::KEY_r:
+      ball_blaster_engine_.Restart();
       break;
   }
 }
