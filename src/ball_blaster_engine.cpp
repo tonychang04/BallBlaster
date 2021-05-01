@@ -130,7 +130,11 @@ void BallBlasterEngine::Restart() {
   player_score_ = 0;
 }
 
-const GameBall & BallBlasterEngine::GetGameball() {
+const GameBall & BallBlasterEngine::GetGameball() const {
   return game_ball_;
+}
+
+const BoardPlayer & BallBlasterEngine::GetBoard() const {
+  return player_board_;
 }
 }  // namespace ballblaster
