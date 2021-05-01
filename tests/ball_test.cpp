@@ -92,3 +92,36 @@ TEST_CASE("Game ball collision with wall") {
     REQUIRE(engine.GetGameball().GetVelocity().y == 7);
   }
 }
+
+TEST_CASE("Ball collide with player board") {
+  glm::vec2 top_left_pixel(100, 100);
+  glm::vec2 bottom_right(750, 550);
+  glm::vec2 board_position(700, 325);
+  ballblaster::EnemyBlock enemyBlock(glm::vec2(100, 100));
+  std::list<ballblaster::EnemyBlock> enemies;
+  enemies.push_back(enemyBlock);
+
+  SECTION("Ball collided with player") {
+    glm::vec2 ball_speed(4, 2);
+    glm::vec2 ball_position(327, 696);
+    ballblaster::BallBlasterEngine engine(top_left_pixel, bottom_right,
+                                          board_position, ball_speed,
+                                          ball_position, enemies);
+    engine.AdvanceOneFrame();
+    // negated y
+    REQUIRE(engine.GetGameball().GetVelocity().x == 4);
+    REQUIRE(engine.GetGameball().GetVelocity().y == -2);
+  }
+
+  SECTION("Ball didn't collide with player") {
+    glm::vec2 ball_speed(4, 2);
+    glm::vec2 ball_position(470, 696);
+    ballblaster::BallBlasterEngine engine(top_left_pixel, bottom_right,
+                                          board_position, ball_speed,
+                                          ball_position, enemies);
+    engine.AdvanceOneFrame();
+    // negated y
+    REQUIRE(engine.GetGameball().GetVelocity().x == 4);
+    REQUIRE(engine.GetGameball().GetVelocity().y == 2);
+  }
+}
