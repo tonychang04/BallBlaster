@@ -1,7 +1,5 @@
-
 #include <enemy_block.h>
 
-#include <glm/vec2.hpp>
 namespace ballblaster {
 
   EnemyBlock::EnemyBlock(const glm::vec2& center) {

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <glm/vec2.hpp>
 #include "cinder/gl/gl.h"
 namespace ballblaster {
 

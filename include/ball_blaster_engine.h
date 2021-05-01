@@ -51,6 +51,8 @@ class BallBlasterEngine {
    */
   void Restart();
 
+  const GameBall& GetGameball();
+
  private:
   const size_t kSpawnEnemyFrame = 100;
   const size_t kBorderLength = 5;

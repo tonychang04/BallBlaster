@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cinder/gl/gl.h"
+
 #include "enemy_block.h"
 
 namespace ballblaster {

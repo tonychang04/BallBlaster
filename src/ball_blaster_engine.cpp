@@ -29,7 +29,9 @@ BallBlasterEngine::BallBlasterEngine(const glm::vec2& top_left,
     : player_board_(board_position), game_ball_(ball_position, ball_speed) {
   top_left_pixel_ = top_left;
   bottom_right_pixel_ = bottom_right;
-  enemies_ = enemies;
+  for(const EnemyBlock& enemy: enemies) {
+    enemies_.push_back(enemy);
+  }
 }
 void BallBlasterEngine::Display() const {
   if (!game_ball_.IsSurviving()) {
@@ -126,5 +128,9 @@ void BallBlasterEngine::Restart() {
   game_ball_.SetSurviving(true);
   frame_count_ = 0;
   player_score_ = 0;
+}
+
+const GameBall & BallBlasterEngine::GetGameball() {
+  return game_ball_;
 }
 }  // namespace ballblaster

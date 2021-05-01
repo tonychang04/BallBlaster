@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glm/vec2.hpp>
+
 
 #include "board_player.h"
 #include "cinder/gl/gl.h"
