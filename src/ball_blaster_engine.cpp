@@ -29,7 +29,7 @@ BallBlasterEngine::BallBlasterEngine(const glm::vec2& top_left,
     : player_board_(board_position), game_ball_(ball_position, ball_speed) {
   top_left_pixel_ = top_left;
   bottom_right_pixel_ = bottom_right;
-  for(const EnemyBlock& enemy: enemies) {
+  for (const EnemyBlock& enemy: enemies) {
     enemies_.push_back(enemy);
   }
 }
@@ -136,5 +136,9 @@ const GameBall & BallBlasterEngine::GetGameball() const {
 
 const BoardPlayer & BallBlasterEngine::GetBoard() const {
   return player_board_;
+}
+
+const std::list<EnemyBlock> & BallBlasterEngine::GetEnemies() const {
+  return enemies_;
 }
 }  // namespace ballblaster

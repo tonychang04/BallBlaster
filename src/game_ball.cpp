@@ -100,7 +100,7 @@ void GameBall::ProcessCollideEnemy(std::list<EnemyBlock>& enemies) {
       if (position_.y < enemy_iterator->GetCenter().x +
                          enemy_iterator->kLength + kRadius &&
           position_.y > enemy_iterator->GetCenter().x -
-                         enemy_iterator->kLength - kRadius) {
+                         enemy_iterator->kLength- kRadius) {
         velocity_.x = -velocity_.x;
         enemies.erase(enemy_iterator);
       }

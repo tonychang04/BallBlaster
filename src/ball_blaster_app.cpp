@@ -12,7 +12,7 @@ void BallBlasterApp::setup() {
   texture = ci::gl::Texture2d::create(ci::loadImage(kBackgroundFilePath));
   cinder::audio::SourceFileRef sourceFile = ci::audio::load(cinder::loadFile(kSoundFilePath));
   music = ci::audio::Voice::create( sourceFile );
-  music->start();
+ // music->start();
 }
 void BallBlasterApp::draw() {
   ci::gl::color(kTextureColor);

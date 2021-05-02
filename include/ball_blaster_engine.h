@@ -55,6 +55,8 @@ class BallBlasterEngine {
 
   const BoardPlayer& GetBoard() const;
 
+  const std::list<EnemyBlock>& GetEnemies() const;
+
 
  private:
   const size_t kSpawnEnemyFrame = 100;
