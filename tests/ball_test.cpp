@@ -125,3 +125,70 @@ TEST_CASE("Ball collide with player board") {
     REQUIRE(engine.GetGameball().GetVelocity().y == 2);
   }
 }
+
+TEST_CASE("Ball collide with enemy") {
+  glm::vec2 top_left_pixel(100, 100);
+  glm::vec2 bottom_right(750, 550);
+  glm::vec2 board_position(700, 325);
+
+
+  SECTION("Ball collide with enemy from left") {
+    glm::vec2 ball_speed(-10, -2);
+    glm::vec2 ball_position(113, 128);
+    ballblaster::EnemyBlock enemyBlock(glm::vec2(150, 130));
+    std::list<ballblaster::EnemyBlock> enemies;
+    enemies.push_back(enemyBlock);
+    ballblaster::BallBlasterEngine engine(top_left_pixel, bottom_right,
+                                          board_position, ball_speed,
+                                          ball_position, enemies);
+    engine.AdvanceOneFrame();
+    REQUIRE(engine.GetGameball().GetVelocity().x == 10);
+    REQUIRE(engine.GetGameball().GetVelocity().y == -2);
+
+  }
+
+  SECTION("Ball collide with enemy from right") {
+    glm::vec2 ball_speed(-10, -2);
+    glm::vec2 ball_position(153, 128);
+    ballblaster::EnemyBlock enemyBlock(glm::vec2(150, 130));
+    std::list<ballblaster::EnemyBlock> enemies;
+    enemies.push_back(enemyBlock);
+    ballblaster::BallBlasterEngine engine(top_left_pixel, bottom_right,
+                                          board_position, ball_speed,
+                                          ball_position, enemies);
+    engine.AdvanceOneFrame();
+    REQUIRE(engine.GetGameball().GetVelocity().x == 10);
+    REQUIRE(engine.GetGameball().GetVelocity().y == -2);
+
+  }
+
+  SECTION("Ball collide with enemy from top") {
+    glm::vec2 ball_speed(-4, 20);
+    glm::vec2 ball_position(144, 90);
+    ballblaster::EnemyBlock enemyBlock(glm::vec2(150, 133));
+    std::list<ballblaster::EnemyBlock> enemies;
+    enemies.push_back(enemyBlock);
+    ballblaster::BallBlasterEngine engine(top_left_pixel, bottom_right,
+                                          board_position, ball_speed,
+                                          ball_position, enemies);
+    engine.AdvanceOneFrame();
+    REQUIRE(engine.GetGameball().GetVelocity().x == -4);
+    REQUIRE(engine.GetGameball().GetVelocity().y == -20);
+
+  }
+
+  SECTION("Ball collide with enemy from bottom") {
+    glm::vec2 ball_speed(-4, -20);
+    glm::vec2 ball_position(144, 180);
+    ballblaster::EnemyBlock enemyBlock(glm::vec2(150, 133));
+    std::list<ballblaster::EnemyBlock> enemies;
+    enemies.push_back(enemyBlock);
+    ballblaster::BallBlasterEngine engine(top_left_pixel, bottom_right,
+                                          board_position, ball_speed,
+                                          ball_position, enemies);
+    engine.AdvanceOneFrame();
+    REQUIRE(engine.GetGameball().GetVelocity().x == -4);
+    REQUIRE(engine.GetGameball().GetVelocity().y == 20);
+  }
+}
+
