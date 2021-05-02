@@ -27,6 +27,9 @@ BallBlasterEngine::BallBlasterEngine(const glm::vec2& top_left,
                                      const glm::vec2& ball_position,
                                      const std::list<EnemyBlock>& enemies)
     : player_board_(board_position), game_ball_(ball_position, ball_speed) {
+  initial_player_pos_ = board_position;
+  initial_ball_pos_ = ball_position;
+  initial_ball_speed = ball_speed.x;
   top_left_pixel_ = top_left;
   bottom_right_pixel_ = bottom_right;
   for (const EnemyBlock& enemy: enemies) {

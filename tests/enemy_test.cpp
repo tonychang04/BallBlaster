@@ -53,6 +53,5 @@ TEST_CASE("Enemies disappear mechanism") {
     // the enemy disappeared
     REQUIRE(engines.GetEnemies().size() == 0);
   }
-
 }
 
