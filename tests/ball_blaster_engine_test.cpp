@@ -56,3 +56,38 @@ TEST_CASE("Lose Game") {
     REQUIRE(engine.GetGameball().IsSurviving() == false);
   }
 }
+
+TEST_CASE("Game Scores") {
+  glm::vec2 top_left_pixel(100, 100);
+  glm::vec2 bottom_right(750, 550);
+  glm::vec2 board_position(700, 325);
+
+
+  SECTION("Score increases after certain phrame") {
+    ballblaster::EnemyBlock enemyBlock(glm::vec2(150, 150));
+    std::list<ballblaster::EnemyBlock> enemies;
+    enemies.push_back(enemyBlock);
+    glm::vec2 ball_speed(0, 0);
+    glm::vec2 ball_position(300, 300);
+    ballblaster::BallBlasterEngine engine(top_left_pixel, bottom_right,
+                                          board_position, ball_speed,
+                                          ball_position, enemies);
+    for (size_t i = 0; i < 100; ++i) {
+      engine.AdvanceOneFrame();
+    }
+    REQUIRE(engine.GetScore() == 1);
+  }
+
+  SECTION("Score increases after colliding blocks") {
+    ballblaster::EnemyBlock enemyBlock(glm::vec2(320, 320));
+    std::list<ballblaster::EnemyBlock> enemies;
+    enemies.push_back(enemyBlock);
+    glm::vec2 ball_speed(1, 1);
+    glm::vec2 ball_position(300, 300);
+    ballblaster::BallBlasterEngine engine(top_left_pixel, bottom_right,
+                                          board_position, ball_speed,
+                                          ball_position, enemies);
+    engine.AdvanceOneFrame();
+    REQUIRE(engine.GetScore() == 1);
+  }
+}

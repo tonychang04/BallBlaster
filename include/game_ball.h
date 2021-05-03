@@ -53,7 +53,10 @@ class GameBall {
 
   void SetVelocity(const glm::vec2& velocity);
 
+
  private:
+  const int kMinVelocity = 2;
+  const size_t kCollisionBuffer = 15;
   bool isSurviving;
   glm::vec2 position_;
   glm::vec2 velocity_;

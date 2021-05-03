@@ -15,12 +15,6 @@ void EnemyBlock::Draw() const {
 void EnemyBlock::MoveOneUpdate() {
   center_.x = center_.x + kSpeed;
 };
-void EnemyBlock::SetCenter(const glm::vec2& center) {
-  if (center[0] < 0 || center[1] < 0) {
-    throw std::invalid_argument("This is not a valid position");
-  }
-  center_ = center;
-}
 
 const glm::vec2& EnemyBlock::GetCenter() const {
   return center_;

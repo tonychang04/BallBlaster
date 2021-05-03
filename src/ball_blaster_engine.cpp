@@ -15,6 +15,7 @@ BallBlasterEngine::BallBlasterEngine(const glm::vec2& top_left_pixel,
   initial_ball_pos_ = game_ball_.GetPosition();
   initial_ball_speed = ball_speed;
   player_score_ = 0;
+  high_score_ = 0;
   frame_count_ = 0;
   top_left_pixel_ = top_left_pixel;
   bottom_right_pixel_ = bottom_right_pixel;
@@ -32,6 +33,8 @@ BallBlasterEngine::BallBlasterEngine(const glm::vec2& top_left,
   initial_ball_speed = ball_speed.x;
   top_left_pixel_ = top_left;
   bottom_right_pixel_ = bottom_right;
+  frame_count_ = 0;
+  player_score_ = 0;
   for (const EnemyBlock& enemy : enemies) {
     enemies_.push_back(enemy);
   }
@@ -41,7 +44,7 @@ void BallBlasterEngine::Display() const {
     ci::gl::drawString(kEndScreenMessage, kEndScreenPosition,
                        kEndMessageColor, kEndScreenFont);
   }
-  ci::gl::color(ci::Color("white"));
+  ci::gl::color(kContainerColor);
   ci::gl::drawStrokedRect(
       ci::Rectf(vec2(top_left_pixel_.y, top_left_pixel_.x),
                 vec2(bottom_right_pixel_.y, bottom_right_pixel_.x)),
@@ -49,6 +52,9 @@ void BallBlasterEngine::Display() const {
 
   ci::gl::drawString(kScoreMessage + std::to_string(player_score_),
                      kScoreLocation, kScoreMessageColor, kScoreFont);
+
+  ci::gl::drawString(kHighScoreMessage + std::to_string(high_score_),
+                     kHighScoreLocation, kHighScoreMessageColor, kHighScoreScoreFont);
 
   if (!enemies_.empty()) {
     for (const EnemyBlock& enemyBlock : enemies_) {
@@ -104,6 +110,10 @@ void BallBlasterEngine::AdvanceOneFrame() {
     game_ball_.SetPosition(
         glm::vec2(game_ball_.GetPosition().x + game_ball_.GetVelocity().x,
                   game_ball_.GetPosition().y + game_ball_.GetVelocity().y));
+  } else {
+    if (player_score_ > high_score_) {
+      high_score_ = player_score_;
+    }
   }
 }
 void BallBlasterEngine::MovePlayer(int distance) {
@@ -143,5 +153,9 @@ const BoardPlayer& BallBlasterEngine::GetBoard() const {
 
 const std::list<EnemyBlock>& BallBlasterEngine::GetEnemies() const {
   return enemies_;
+}
+
+const size_t& BallBlasterEngine::GetScore() const {
+  return player_score_;
 }
 }  // namespace ballblaster

@@ -3,7 +3,7 @@
 #include <catch2/catch.hpp>
 #include <glm/vec2.hpp>
 
-/*
+
 TEST_CASE("Spawning enemies") {
   glm::vec2 top_left_pixel(100, 100);
   glm::vec2 bottom_right(750, 550);
@@ -23,7 +23,7 @@ TEST_CASE("Spawning enemies") {
   REQUIRE(engines.GetEnemies().front().GetCenter().x > 100);
   REQUIRE(engines.GetEnemies().front().GetCenter().y > 100);
   }
-  */
+
 TEST_CASE("Enemies disappear mechanism") {
   glm::vec2 top_left_pixel(100, 100);
   glm::vec2 bottom_right(750, 550);

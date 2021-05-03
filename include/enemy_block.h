@@ -3,6 +3,9 @@
 #include "cinder/gl/gl.h"
 namespace ballblaster {
 
+/**
+ * The Enemy Block in the game.
+ */
 class EnemyBlock {
  public:
   void Draw() const;
@@ -12,8 +15,6 @@ class EnemyBlock {
    * Move enemy to the next update.
    */
   void MoveOneUpdate();
-
-  void SetCenter(const glm::vec2& center);
 
   const glm::vec2& GetCenter() const;
 

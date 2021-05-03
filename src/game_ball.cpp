@@ -6,10 +6,10 @@
 namespace ballblaster {
 GameBall::GameBall(const glm::vec2& position, const glm::vec2& velocity) {
   position_ = position;
-  if (velocity.x > 0 && velocity.x < 2) {
-    velocity_ = glm::vec2(velocity.x + 2, velocity.y);
-  } else if (velocity.x < 0 && velocity.x > -2) {
-    velocity_ = glm::vec2(velocity.x - 2, velocity.y);
+  if (velocity.x > 0 && velocity.x < kMinVelocity) {
+    velocity_ = glm::vec2(velocity.x + kMinVelocity, velocity.y);
+  } else if (velocity.x < 0 && velocity.x > -kMinVelocity) {
+    velocity_ = glm::vec2(velocity.x - kMinVelocity, velocity.y);
   } else {
     velocity_ = velocity;
   }
@@ -39,10 +39,10 @@ const glm::vec2& GameBall::GetVelocity() const {
 }
 
 void GameBall::SetVelocity(const glm::vec2& velocity) {
-  if (velocity.x > 0 && velocity.x < 2) {
-    velocity_ = glm::vec2(velocity.x + 2, velocity.y);
-  } else if (velocity.x < 0 && velocity.x > -2) {
-    velocity_ = glm::vec2(velocity.x - 2, velocity.y);
+  if (velocity.x > 0 && velocity.x < kMinVelocity) {
+    velocity_ = glm::vec2(velocity.x + kMinVelocity, velocity.y);
+  } else if (velocity.x < 0 && velocity.x > -kMinVelocity) {
+    velocity_ = glm::vec2(velocity.x - kMinVelocity, velocity.y);
   } else {
     velocity_ = velocity;
   }
@@ -104,9 +104,9 @@ void GameBall::ProcessCollideEnemy(std::list<EnemyBlock>& enemies) {
         (position_.x - enemy_iterator->GetCenter().y) * velocity_.x < 0) {
       // if the ball actually collides the block
       if (position_.y < enemy_iterator->GetCenter().x +
-                            enemy_iterator->kLength + kRadius - 15 &&
+                            enemy_iterator->kLength + kRadius - kCollisionBuffer &&
           position_.y > enemy_iterator->GetCenter().x -
-                            enemy_iterator->kLength - kRadius + 15) {
+                            enemy_iterator->kLength - kRadius + kCollisionBuffer) {
         velocity_.x = -velocity_.x;
         collide = true;
       }
@@ -124,9 +124,9 @@ void GameBall::ProcessCollideEnemy(std::list<EnemyBlock>& enemies) {
                    0) {
       // if the ball actually collides the block
       if (position_.x < enemy_iterator->GetCenter().y + enemy_iterator->kWidth +
-                            kRadius - 15 &&
+                            kRadius - kCollisionBuffer &&
           position_.x > enemy_iterator->GetCenter().y - enemy_iterator->kWidth -
-                            kRadius + 15) {
+                            kRadius + kCollisionBuffer) {
         velocity_.y = -velocity_.y;
         collide = true;
       }
