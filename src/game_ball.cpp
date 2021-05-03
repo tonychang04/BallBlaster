@@ -39,6 +39,8 @@ const glm::vec2& GameBall::GetVelocity() const {
 }
 
 void GameBall::SetVelocity(const glm::vec2& velocity) {
+  // if the velocity is below the min velocity, add the min velocity to the
+  // current velocity to generate a faster game
   if (velocity.x > 0 && velocity.x < kMinVelocity) {
     velocity_ = glm::vec2(velocity.x + kMinVelocity, velocity.y);
   } else if (velocity.x < 0 && velocity.x > -kMinVelocity) {

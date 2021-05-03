@@ -40,6 +40,7 @@ BallBlasterEngine::BallBlasterEngine(const glm::vec2& top_left,
   }
 }
 void BallBlasterEngine::Display() const {
+  // the game loses then display the end message
   if (!game_ball_.IsSurviving()) {
     ci::gl::drawString(kEndScreenMessage, kEndScreenPosition,
                        kEndMessageColor, kEndScreenFont);
@@ -50,17 +51,19 @@ void BallBlasterEngine::Display() const {
                 vec2(bottom_right_pixel_.y, bottom_right_pixel_.x)),
       kBorderLength);
 
+  // write out the score and highest score
   ci::gl::drawString(kScoreMessage + std::to_string(player_score_),
                      kScoreLocation, kScoreMessageColor, kScoreFont);
-
   ci::gl::drawString(kHighScoreMessage + std::to_string(high_score_),
                      kHighScoreLocation, kHighScoreMessageColor, kHighScoreScoreFont);
 
+  // if enemies is not empty then draw the enemies
   if (!enemies_.empty()) {
     for (const EnemyBlock& enemyBlock : enemies_) {
       enemyBlock.Draw();
     }
   }
+  //draw the player board and the game ball
   game_ball_.Draw();
   player_board_.Draw();
 }
@@ -94,12 +97,17 @@ void BallBlasterEngine::AdvanceOneFrame() {
       ++player_score_;
     }
 
+    // store a temporary current_enemies variable
     size_t current_enemies = enemies_.size();
     game_ball_.ProcessCollideEnemy(enemies_);
+    // if the enemy size changes after process collide enemy,
+    // then add the player score because that means
+    // the ball collided with enemy
     if (current_enemies != enemies_.size()) {
       ++player_score_;
     }
 
+    // if board collided enemy, then the game lses
     if (player_board_.HasCollideEnemy(enemies_)) {
       game_ball_.SetSurviving(false);
     }
@@ -111,13 +119,16 @@ void BallBlasterEngine::AdvanceOneFrame() {
         glm::vec2(game_ball_.GetPosition().x + game_ball_.GetVelocity().x,
                   game_ball_.GetPosition().y + game_ball_.GetVelocity().y));
   } else {
+    // if the player loses, then check the score against the highest score
     if (player_score_ > high_score_) {
       high_score_ = player_score_;
     }
   }
 }
 void BallBlasterEngine::MovePlayer(int distance) {
+  // can only move player when game is still going on
   if (game_ball_.IsSurviving()) {
+    // if player didn't reach out of the container
     if (!(player_board_.GetCenter().y + player_board_.GetWidth() + distance +
                   kBorderLength >
               bottom_right_pixel_.y &&
