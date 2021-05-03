@@ -12,15 +12,15 @@ void BallBlasterApp::setup() {
   cinder::audio::SourceFileRef sourceFile =
       ci::audio::load(cinder::loadFile(kSoundFilePath));
   music = ci::audio::Voice::create(sourceFile);
-  // music->start();
+  music->start();
 }
 void BallBlasterApp::draw() {
   ci::gl::color(kTextureColor);
   ci::gl::draw(texture);
   ball_blaster_engine_.Display();
   if (!isStarted_) {
-    ci::gl::drawString("Press s to start game", glm::vec2(100, 50),
-                       ci::Color("white"), ci::Font("Impact", 35));
+    ci::gl::drawString(kStartMessage, kStartMessageLocation,
+                       kStartMessageColor, kStartMessageFont);
   }
 }
 

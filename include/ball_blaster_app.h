@@ -42,6 +42,11 @@ class BallBlasterApp : public ci::app::App {
   BallBlasterEngine ball_blaster_engine_;
   bool isStarted_;
 
+  std::string kStartMessage = "Press s to start game";
+  const cinder::ColorT<float> kStartMessageColor = "aqua";
+  const glm::vec2 kStartMessageLocation = glm::vec2(100, 50);
+  ci::Font kStartMessageFont = ci::Font("Impact", 35);
+
   ci::audio::VoiceRef music;
   const cinder::ColorT<float> kTextureColor = "blue";
   ci::gl::Texture2dRef texture;

@@ -34,15 +34,15 @@ the losing condition and add some graphics.
 
 **Week3:**
 I will enhance graphics of the game and 
-create a start menu and end menu for the game. I will
-also have a score tracker implemented. 
+create a start message and end message for the game. I will
+also have a score tracker implemented. Furthermore, I will have
+a restart button so that the user can continue the game
 
 **Extra Features**:
 I can add music in the game and add some power ups that
 can split the ball, lengthen the player board, or stop 
-the movements of bricks coming down. I can also 
-devise and implement some unique abilities of
-the enemies.
+the movements of bricks coming down. I can also add a high score
+system that tracks the highest score of the player.
 
 
 

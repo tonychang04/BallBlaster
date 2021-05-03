@@ -76,8 +76,8 @@ class BallBlasterEngine {
   const glm::vec2 kScoreLocation = glm::vec2(560, 300);
   ci::Font kScoreFont = ci::Font("Helvetica Neue", 25);
 
-  const std::string kEndScreenMessage = "Game Over! Press r to restart game";
-  const cinder::ColorT<float> kEndMessageColor = "white";
+  const std::string kEndScreenMessage = "Game Over! Press r to restart game!";
+  const cinder::ColorT<float> kEndMessageColor = "aqua";
   const glm::vec2 kEndScreenPosition = glm::vec2(100, 50);
   ci::Font kEndScreenFont = ci::Font("Impact", 35);
 
