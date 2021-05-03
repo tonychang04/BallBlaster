@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 #include "board_player.h"
 #include "cinder/gl/gl.h"
 #include "enemy_block.h"
@@ -12,7 +10,7 @@ namespace ballblaster {
  */
 class GameBall {
  public:
-  GameBall(const glm::vec2& position,const glm::vec2& velocity);
+  GameBall(const glm::vec2& position, const glm::vec2& velocity);
 
   /**
    * Drawing the ball based on it's position
@@ -25,7 +23,8 @@ class GameBall {
    * @param end_pixel the bottom right pixel of the wall
    * @param length the length of the container
    */
-  void ProcessCollideWall(const glm::vec2& start_pixel, const glm::vec2& end_pixel, size_t length);
+  void ProcessCollideWall(const glm::vec2& start_pixel,
+                          const glm::vec2& end_pixel, size_t length);
 
   /**
    * Process whether the ball collides with the player board.
@@ -33,13 +32,16 @@ class GameBall {
    */
   void ProcessCollidePlayer(const BoardPlayer& player);
 
+  /**
+   * Process whether the ball collides the enemies.
+   * @param enemies the list of enemies
+   */
   void ProcessCollideEnemy(std::list<EnemyBlock>& enemies);
   /**
    * Determine whether the ball is still surviving.
    * @return a boolean determining if the ball is surviving
    */
   bool IsSurviving() const;
-
 
   const glm::vec2& GetPosition() const;
 
@@ -58,5 +60,4 @@ class GameBall {
   const cinder::ColorT<float> kColor = "blue";
   const size_t kRadius = 20;
 };
-}
-
+}  // namespace ballblaster

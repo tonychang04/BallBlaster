@@ -57,16 +57,19 @@ class BallBlasterEngine {
 
   const std::list<EnemyBlock>& GetEnemies() const;
 
-
  private:
   const size_t kSpawnEnemyFrame = 100;
   const size_t kBorderLength = 5;
 
+
   size_t player_score_;
   std::string kScoreMessage = "Score: ";
+  const cinder::ColorT<float> kScoreMessageColor = "white";
   const glm::vec2 kScoreLocation = glm::vec2(600, 300);
   ci::Font kScoreFont = ci::Font("Helvetica Neue", 30);
 
+  const std::string kEndScreenMessage = "Game Over! Press r to restart game";
+  const cinder::ColorT<float> kEndMessageColor = "white";
   const glm::vec2 kEndScreenPosition = glm::vec2(100, 50);
   ci::Font kEndScreenFont = ci::Font("Impact", 35);
 

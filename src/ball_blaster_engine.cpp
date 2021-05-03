@@ -32,14 +32,14 @@ BallBlasterEngine::BallBlasterEngine(const glm::vec2& top_left,
   initial_ball_speed = ball_speed.x;
   top_left_pixel_ = top_left;
   bottom_right_pixel_ = bottom_right;
-  for (const EnemyBlock& enemy: enemies) {
+  for (const EnemyBlock& enemy : enemies) {
     enemies_.push_back(enemy);
   }
 }
 void BallBlasterEngine::Display() const {
   if (!game_ball_.IsSurviving()) {
-    ci::gl::drawString("Game Over! Press r to restart game", kEndScreenPosition,
-                       ci::Color("white"), kEndScreenFont);
+    ci::gl::drawString(kEndScreenMessage, kEndScreenPosition,
+                       kEndMessageColor, kEndScreenFont);
   }
   ci::gl::color(ci::Color("white"));
   ci::gl::drawStrokedRect(
@@ -48,7 +48,7 @@ void BallBlasterEngine::Display() const {
       kBorderLength);
 
   ci::gl::drawString(kScoreMessage + std::to_string(player_score_),
-                     kScoreLocation, ci::Color("white"), kScoreFont);
+                     kScoreLocation, kScoreMessageColor, kScoreFont);
 
   if (!enemies_.empty()) {
     for (const EnemyBlock& enemyBlock : enemies_) {
@@ -133,15 +133,15 @@ void BallBlasterEngine::Restart() {
   player_score_ = 0;
 }
 
-const GameBall & BallBlasterEngine::GetGameball() const {
+const GameBall& BallBlasterEngine::GetGameball() const {
   return game_ball_;
 }
 
-const BoardPlayer & BallBlasterEngine::GetBoard() const {
+const BoardPlayer& BallBlasterEngine::GetBoard() const {
   return player_board_;
 }
 
-const std::list<EnemyBlock> & BallBlasterEngine::GetEnemies() const {
+const std::list<EnemyBlock>& BallBlasterEngine::GetEnemies() const {
   return enemies_;
 }
 }  // namespace ballblaster

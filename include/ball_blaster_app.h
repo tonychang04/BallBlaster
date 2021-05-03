@@ -1,17 +1,16 @@
 #pragma once
 
 #include "ball_blaster_engine.h"
-#include "cinder/audio/Voice.h"
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
+#include "cinder/audio/Voice.h"
 #include "cinder/gl/gl.h"
 
 namespace ballblaster {
-
 /**
  * Class for the app of the game.
  */
-class BallBlasterApp:public ci::app::App{
+class BallBlasterApp : public ci::app::App {
  public:
   BallBlasterApp();
 
@@ -36,11 +35,7 @@ class BallBlasterApp:public ci::app::App{
    */
   void setup() override;
 
-
-
-
-private:
-
+ private:
   const std::string kBackgroundFilePath = "assets/background.jpg";
   const std::string kSoundFilePath = "assets/music.mp3";
 
@@ -48,10 +43,10 @@ private:
   bool isStarted_;
 
   ci::audio::VoiceRef music;
-  const cinder::ColorT<float> kTextureColor  = "blue";
+  const cinder::ColorT<float> kTextureColor = "blue";
   ci::gl::Texture2dRef texture;
 
   const size_t kMovePixel = 8;
   const size_t kWindowSize = 775;
 };
-};
+};  // namespace ballblaster
