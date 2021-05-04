@@ -13,6 +13,8 @@ $ brew install --cask cinder
 $ brew install cmake
 $ brew install llvm
 ```
+You must have a c++ ide(preferably clion) and an Xcode with version no later than
+12.4 to build this project.
 
 ## **Controls**
 Key | Action
@@ -25,6 +27,9 @@ Key | Action
 ## **Contact**
 For any bugs and advices, contact me at
 **yaowenc2@illinois.edu**.
+
+## **Licence**
+Released under the [MIT License](https://github.com/jonschlinkert/update-copyright/blob/master/LICENSE).
 
 
 
