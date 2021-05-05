@@ -6,7 +6,13 @@
 namespace ballblaster {
 GameBall::GameBall(const glm::vec2& position, const glm::vec2& velocity) {
   position_ = position;
-  velocity_ = velocity;
+  if (velocity.x > 0 && velocity.x < kMinVelocity) {
+    velocity_ = glm::vec2(velocity.x + kMinVelocity, velocity.y);
+  } else if (velocity.x < 0 && velocity.x > -kMinVelocity) {
+    velocity_ = glm::vec2(velocity.x - kMinVelocity, velocity.y);
+  } else {
+    velocity_ = velocity;
+  }
   isSurviving = true;
 }
 void GameBall::Draw() const {
@@ -33,7 +39,15 @@ const glm::vec2& GameBall::GetVelocity() const {
 }
 
 void GameBall::SetVelocity(const glm::vec2& velocity) {
-  velocity_ = velocity;
+  // if the velocity is below the min velocity, add the min velocity to the
+  // current velocity to generate a faster game
+  if (velocity.x > 0 && velocity.x < kMinVelocity) {
+    velocity_ = glm::vec2(velocity.x + kMinVelocity, velocity.y);
+  } else if (velocity.x < 0 && velocity.x > -kMinVelocity) {
+    velocity_ = glm::vec2(velocity.x - kMinVelocity, velocity.y);
+  } else {
+    velocity_ = velocity;
+  }
 }
 
 void GameBall::ProcessCollideWall(const glm::vec2& start_pixel,
@@ -57,7 +71,7 @@ void GameBall::ProcessCollideWall(const glm::vec2& start_pixel,
     velocity_.y = -velocity_.y;
   }
 }
-bool GameBall::IsSurviving() {
+bool GameBall::IsSurviving() const {
   return isSurviving;
 }
 void GameBall::ProcessCollidePlayer(const BoardPlayer& player) {
@@ -79,36 +93,48 @@ void GameBall::ProcessCollideEnemy(std::list<EnemyBlock>& enemies) {
   std::list<EnemyBlock>::iterator enemy_iterator;
   for (enemy_iterator = enemies.begin(); enemy_iterator != enemies.end();
        ++enemy_iterator) {
-    if (((position_.x > enemy_iterator->GetCenter().y -
-                        enemy_iterator->kWidth - kRadius &&
+    bool collide = false;
+    // if the ball is on the right hand side of the block
+    if (((position_.x > enemy_iterator->GetCenter().y - enemy_iterator->kWidth -
+                            kRadius &&
           position_.x < enemy_iterator->GetCenter().y - kRadius) ||
-         (position_.x < enemy_iterator->GetCenter().y +
-                        enemy_iterator->kWidth + kRadius &&
+         // of if the ball is on the left hand side of the block
+         (position_.x < enemy_iterator->GetCenter().y + enemy_iterator->kWidth +
+                            kRadius &&
           position_.x > enemy_iterator->GetCenter().y + kRadius)) &&
-        (position_.x - enemy_iterator->GetCenter().y) * velocity_.x <
-        0) {
+        // and the ball is moving towards the block
+        (position_.x - enemy_iterator->GetCenter().y) * velocity_.x < 0) {
+      // if the ball actually collides the block
       if (position_.y < enemy_iterator->GetCenter().x +
-                         enemy_iterator->kLength + kRadius &&
+                            enemy_iterator->kLength + kRadius - kCollisionBuffer &&
           position_.y > enemy_iterator->GetCenter().x -
-                         enemy_iterator->kLength - kRadius) {
+                            enemy_iterator->kLength - kRadius + kCollisionBuffer) {
         velocity_.x = -velocity_.x;
-        enemies.erase(enemy_iterator);
+        collide = true;
+      }
+      // if the ball is on the bottom of the block
+    }
+    if (((position_.y > enemy_iterator->GetCenter().x -
+                                   enemy_iterator->kLength - kRadius &&
+                 position_.y < enemy_iterator->GetCenter().x - kRadius) ||
+                // if the ball is at the top of the block
+                (position_.y < enemy_iterator->GetCenter().x +
+                                   enemy_iterator->kLength + kRadius &&
+                 position_.y > enemy_iterator->GetCenter().x + kRadius)) &&
+               // the ball is moving towards the block
+               (position_.y - enemy_iterator->GetCenter().x) * velocity_.y <
+                   0) {
+      // if the ball actually collides the block
+      if (position_.x < enemy_iterator->GetCenter().y + enemy_iterator->kWidth +
+                            kRadius - kCollisionBuffer &&
+          position_.x > enemy_iterator->GetCenter().y - enemy_iterator->kWidth -
+                            kRadius + kCollisionBuffer) {
+        velocity_.y = -velocity_.y;
+        collide = true;
       }
     }
-    else if (((position_.y > enemy_iterator->GetCenter().x -
-                        enemy_iterator->kLength - kRadius &&
-          position_.y < enemy_iterator->GetCenter().x - kRadius) ||
-         (position_.y < enemy_iterator->GetCenter().x +
-                        enemy_iterator->kLength + kRadius &&
-          position_.y > enemy_iterator->GetCenter().x + kRadius)) &&
-        (position_.y - enemy_iterator->GetCenter().x) * velocity_.y < 0) {
-      if (position_.x < enemy_iterator->GetCenter().y +
-                        enemy_iterator->kWidth + kRadius &&
-          position_.x > enemy_iterator->GetCenter().y -
-                         enemy_iterator->kWidth - kRadius) {
-        velocity_.y = -velocity_.y;
-        enemies.erase(enemy_iterator);
-      }
+    if (collide) {
+      enemies.erase(enemy_iterator);
     }
   }
 }
