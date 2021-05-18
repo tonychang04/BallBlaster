@@ -1,6 +1,6 @@
 # **Ball Blaster**
 ![image](assets/screen_shot.png)
-The objective of this game is to score more points by surviving and hitting the purple enemies with the block. 
+The objective of this game is to score more points by surviving and hitting the purple enemies with the block. Purple block will continue to spawn forever and you will have to either dodge it or use the blue ball to blast it.
 
 ## **Dependencies**
 * [Cinder](https://libcinder.org/download)
